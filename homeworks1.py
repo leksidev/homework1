@@ -8,7 +8,7 @@ def domain_name(url: str) -> str:
         url = url.replace("www.", "")
     if url.find(".") == -1:
         return url
-    url = re.split("\.", url, 1)
+    url = re.split("\.", url, 1)[0]
     if url.find("//") != -1:
         return re.search(r'(?<=[/|.])\w+.\w+', url).group()
     else:
