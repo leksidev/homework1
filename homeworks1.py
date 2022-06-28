@@ -1,9 +1,18 @@
 # Задача 1
+
 import re
 
 
 def domain_name(url: str) -> str:
-    return re.search(r'(?<=[/|.])\w+', url).group()
+    if url.find("www.") != -1:
+        url = url.replace("www.", "")
+    if url.find(".") == -1:
+        return url
+    url = re.split("\.", url, 1)
+    if url.find("//") != -1:
+        return re.search(r'(?<=[/|.])\w+.\w+', url).group()
+    else:
+        return(url)
 
 
 assert domain_name("http://github.com/carbonfive/raygun") == "github"
